@@ -26,7 +26,9 @@ if echo "$basename" | egrep -q "\.zip$"; then
 	count="$(unzip -l "$basename" | wc -l)"
 	unzip -o "$basename" -d "$temp" | $cat
 	rm -rf $base/*
-	mv "$temp"/*/* "$base/"
+	# なんでか git-chglog では動かん
+	#mv "$temp"/*/* "$base/"
+	mv "$temp"/* "$base/"
 elif echo "$basename" | egrep -q "\.tar\.gz$"; then
 	base=$(basename -s ".tar.gz" "$basename")
 	mkdir -p "$base"
